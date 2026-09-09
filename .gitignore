@@ -1,0 +1,43 @@
+# Compilés et exécutables
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+
+# Fichiers temporaires et logs
+*.log
+*.tmp
+*.swp
+
+# Répertoires de build (CMake, Makefile, etc.)
+build/
+bin/
+obj/
+Debug/
+Release/
+
+# Fichiers de configuration d'IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Fichiers de dépendances (si tu utilises des bibliothèques externes)
+lib/
+vendor/
+
+# Fichiers de documentation générés (Doxygen, etc.)
+doc/
+*.dvi
+*.pdf
+
+# Fichiers de cache (macOS, Linux, etc.)
+.DS_Store
+Thumbs.db
+
+# Fichiers de debug (GDB, Valgrind, etc.)
+*.gdb
+*.valgrind
+core
