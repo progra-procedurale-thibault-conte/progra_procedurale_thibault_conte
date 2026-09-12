@@ -3,5 +3,7 @@
 
 
 void printProfile();
+void printBold(char *text);
+void printUnderline(char *text);
 
 #endif

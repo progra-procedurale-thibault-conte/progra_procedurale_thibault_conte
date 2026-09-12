@@ -7,6 +7,7 @@
 
 int main (void)
 {
+    // permet d'afficher les accents,... via encodage UTF8
     SetConsoleOutputCP(CP_UTF8);
 
     printProfile();
