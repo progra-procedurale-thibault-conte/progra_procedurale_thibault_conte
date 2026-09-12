@@ -12,7 +12,7 @@ typedef enum : unsigned char
 typedef struct
 {
     char sName[40];
-    unsigned short int knownledgeLvl;
+    unsigned short int knownledgeLvl; // choix : max à 10 
 }Language;
 
 typedef struct
@@ -25,5 +25,7 @@ typedef struct
 }Project;
 
 
+void printLanguage(Language *temp);
+void printProject(Project *temp);
 
 #endif
