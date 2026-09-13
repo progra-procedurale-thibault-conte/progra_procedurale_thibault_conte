@@ -8,6 +8,11 @@
 #include "profil.h"
 #include "progra.h"
 
+#define NBOFUSERCHOICES 5
+#define NBOFLANGUAGES 9
+#define NBOFPROJECTS 4
+#define MAXSKILLLEVEL 10
+
 int main (void)
 {
     #ifdef _WIN32
@@ -19,6 +24,7 @@ int main (void)
     bool leaveProg;
     unsigned short int userChoice;
 
+    // si ajout d'un langage => incrémenter la macro NBOFLANGUAGES 
     Language langC = {.sName = "C", .knowledgeLvl = 7};
     Language langCPP = {.sName = "C++", .knowledgeLvl = 6};
     Language langCSharp = {.sName = "C#", .knowledgeLvl = 4};
@@ -31,6 +37,7 @@ int main (void)
 
     Language allKnownLang[9] = { langC, langCPP, langCSharp, langMySQL, langSQLite, langBash, langHTML, langCSS, langRayLib};
 
+    // si ajout d'un projet => incrémenter la macro NBOFPROJECTS
     Project projPuis4 = {.sName = "Puissance 4",
                          .language = {langC},
                          .languageArrayLength = 1,
@@ -60,6 +67,7 @@ int main (void)
                                .sLienGitHub = "https://github.com/Mezdoc18/bataille_navale"};
 
     Project allProjects [4] = {projPuis4, projCandy, projJeuLangue, projToucheCoule};
+
     // code
 
     leaveProg = false;
@@ -70,12 +78,12 @@ int main (void)
     while (!leaveProg)
     {   
         printMainMenu();
-        userChoice = getUserChoice();      
+        userChoice = getUserChoice(NBOFUSERCHOICES);      
 
        switch (userChoice)
        {
             case 0:
-                puts("Merci pour votre attention");
+                puts("\nMerci pour votre attention\n");
                 leaveProg = true;
                 break;
             case 1:
@@ -83,12 +91,17 @@ int main (void)
                 break;
             
             case 2: 
-                printTechSkills(allKnownLang, 9);
+                printTechSkills(allKnownLang, NBOFLANGUAGES);
                 break;
             case 3:
-                printProjectsList(allProjects, 4);
+                puts("Quelle niveau minimal de tech afficher? (0-10)");
+                userChoice = getUserChoice(MAXSKILLLEVEL);
+                printTechSkillsMinLvl(allKnownLang, NBOFLANGUAGES, userChoice);
                 break;
             case 4:
+                printProjectsList(allProjects, NBOFPROJECTS);
+                break;
+             case 5:
                 // qqs statistiques
                 break;
 

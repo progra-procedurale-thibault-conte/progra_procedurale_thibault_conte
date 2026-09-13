@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "progra.h"
 #include "compat.h"
+#include "profil.h"
+#include "string.h"
 
 void printLanguage(Language *temp)
 {
@@ -9,12 +11,14 @@ void printLanguage(Language *temp)
 
 void printProject(Project *temp)
 {
-    printf_s("Projet: %s\n", temp->sName);
+    char nameTemp[100];
+    strcpy(nameTemp, temp->sName);
+
+    printUnderline(nameTemp);
     puts("Langage(s) utilisé(s):");
     for (unsigned short int i = 0; i < temp->languageArrayLength; i++)
     {
-        printf_s("[%d] ", i+ 1);
-        printf_s("%s\n", temp->language[i].sName);
+        printf_s("- %s\n", temp->language[i].sName);
     }
 
     printf_s("Année: %u\n", temp->year);
@@ -38,6 +42,6 @@ void printProject(Project *temp)
     if(temp->sLienGitHub[0] != '\0')
         printf_s("Lien: %s\n", temp->sLienGitHub);
     else
-        puts("Pas sur GitHub");
+        puts("Pas de lien GitHub");
 }
 

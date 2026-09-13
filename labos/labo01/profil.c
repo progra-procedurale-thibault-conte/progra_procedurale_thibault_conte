@@ -2,6 +2,8 @@
 #include "profil.h"
 #include "compat.h"
 
+
+
 //*************************//
 //      Mise en forme
 //*************************//
@@ -19,16 +21,16 @@ void printUnderline(char *text)
 //      Getters
 //*************************//
 
-unsigned short int getUserChoice()
+unsigned short int getUserChoice(unsigned short int maxValue)
 {
     char buffer[20];
     unsigned short int userChoice;
 
     while((fgets(buffer, sizeof(buffer), stdin) == NULL) ||
           (sscanf_s(buffer, "%hu", &userChoice) != 1)     || 
-          (userChoice > 4))
+          (userChoice > maxValue))
     {
-        fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et 4");
+        fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et %hu", maxValue);
     }
 
     return userChoice;
@@ -58,12 +60,14 @@ void printBeginProg()
 
 void printMainMenu()
 {
+    // si ajout de choix utilisateurs, modifier la macro NBOFUSERCHOICES
     puts("\n");
     printUnderline("Afficher:\n");
     puts("[1] Le profil");
     puts("[2] Les compétences techniques / langages");
-    puts("[3] Les projets");
-    puts("[4] Quelques statistiques");
+    puts("[3] Les compétences techniques / langages avec un niveau minimum");
+    puts("[4] Les projets");
+    puts("[5] Quelques statistiques");
     putc('\n',stdout);
     puts("[0] Quitter le programme");
 }
@@ -104,10 +108,28 @@ void printTechSkills(Language temp[], unsigned short int arrayLength)
     putc('*', stdout);
 }
 
+void printTechSkillsMinLvl(Language temp[], unsigned short int arrayLength, unsigned short int minSkillLvl)
+{
+    printStarsLine();
+    putc('*', stdout);
+    printBold("\n\n\t\t/// COMPETENCES \\\\\\ \n");
+
+    for (unsigned short int i = 0; i < arrayLength; i++)
+    {
+        if(temp[i].knowledgeLvl >= minSkillLvl)
+            printLanguage(&temp[i]);
+    }
+        
+
+    printBold("\t\t\\\\\\             ///\n");    
+    printStarsLine();
+    putc('*', stdout);
+}
+
 void printProjectsList(Project temp[],unsigned short int arrayLength)
 {
     printStarsLine();
-    printBold("\n\n\t\t/// PROJETS \\\\\\ \n");
+    printBold("\n\n\t\t /// PROJETS \\\\\\ \n");
 
     for (unsigned short int i = 0; i < arrayLength; i++)
     {
