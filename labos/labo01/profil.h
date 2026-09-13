@@ -8,7 +8,7 @@ void printBold(char *text);
 void printUnderline(char *text);
 
 // Getters
-short int getUserChoice();
+unsigned short int getUserChoice();
 
 // Affichage
 void printBeginStarsLine();

@@ -12,16 +12,17 @@ typedef enum : unsigned char
 typedef struct
 {
     char sName[40];
-    unsigned short int knownledgeLvl; // choix : max à 10 
+    unsigned short int knowledgeLvl; // choix : max à 10 
 }Language;
 
 typedef struct
 {
-    char sName[100];
+    const char sName[100];
     Language language[4];
     unsigned short int languageArrayLength;
     unsigned short int year;
-    PROJECT_STATUS status;  
+    PROJECT_STATUS status;
+    const char sLienGitHub[200]; 
 
 }Project;
 

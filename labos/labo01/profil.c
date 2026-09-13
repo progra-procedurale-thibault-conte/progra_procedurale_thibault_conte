@@ -19,7 +19,7 @@ void printUnderline(char *text)
 //      Getters
 //*************************//
 
-short int getUserChoice()
+unsigned short int getUserChoice()
 {
     char buffer[20];
     unsigned short int userChoice;
@@ -28,7 +28,7 @@ short int getUserChoice()
           (sscanf_s(buffer, "%hu", &userChoice) != 1)     || 
           (userChoice > 4))
     {
-        fprintf(stderr, "Format attendu: 1 chiffre inférieur à 4");
+        fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et 4");
         continue;
     }
 

@@ -19,33 +19,45 @@ int main (void)
     bool leaveProg;
     unsigned short int userChoice;
 
-    Language langC = {.sName = "C", .knownledgeLvl = 7};
-    Language langCPP = {.sName = "C++", .knownledgeLvl = 6};
-    Language langCSharp = {.sName = "C#", .knownledgeLvl = 4};
-    Language langMySQL = {.sName = "MySQL", .knownledgeLvl = 8};
-    Language langSQLite = {.sName = "SQLite", .knownledgeLvl = 6};
-    Language langBash = {.sName = "Bash", .knownledgeLvl = 4};
-    Language langHTML = {.sName = "HTML", .knownledgeLvl = 4};
-    Language langCSS = {.sName = "CSS", .knownledgeLvl = 4};
-    Language langRayLib = {.sName = "RayLib (Librairie C)", .knownledgeLvl = 0}; 
+    Language langC = {.sName = "C", .knowledgeLvl = 7};
+    Language langCPP = {.sName = "C++", .knowledgeLvl = 6};
+    Language langCSharp = {.sName = "C#", .knowledgeLvl = 4};
+    Language langMySQL = {.sName = "MySQL", .knowledgeLvl = 8};
+    Language langSQLite = {.sName = "SQLite", .knowledgeLvl = 6};
+    Language langBash = {.sName = "Bash", .knowledgeLvl = 4};
+    Language langHTML = {.sName = "HTML", .knowledgeLvl = 4};
+    Language langCSS = {.sName = "CSS", .knowledgeLvl = 4};
+    Language langRayLib = {.sName = "RayLib (Librairie C)", .knowledgeLvl = 0}; 
 
     Language allKnownLang[9] = { langC, langCPP, langCSharp, langMySQL, langSQLite, langBash, langHTML, langCSS, langRayLib};
 
-    Project projPuis4 = {.sName = "Puissance 4", .language = {langC}, .languageArrayLength = 1, .year = 2024, .status = FINISHED};
-    Project projCandy = {.sName = "Candy crush", .language = {langC}, .languageArrayLength = 1, .year = 2025, .status = FINISHED};
-    Project projJeuLangue = {.sName = "Jeu traduction multi-langues", 
-                             .language[0] = langCSharp, 
-                             .language[1] = langMySQL, 
-                             .language[2] = langSQLite, 
-                             .languageArrayLength = 3,  
-                             .year = 2026, 
-                             .status = FINISHED};
-    Project projToucheCoule = {.sName = "Touché Coulé", 
-                               .language[0] = langC, 
-                               .language[1] = langRayLib,
-                               .languageArrayLength = 2,                               
-                               .year = 2026, 
-                               .status = ACTIVE};
+    Project projPuis4 = {.sName = "Puissance 4",
+                         .language = {langC},
+                         .languageArrayLength = 1,
+                         .year = 2024,
+                         .status = FINISHED,
+                         .sLienGitHub = ""};
+
+    Project projCandy = {.sName = "Candy crush",
+                         .language = {langC},
+                         .languageArrayLength = 1,
+                         .year = 2025,
+                         .status = FINISHED,
+                         .sLienGitHub = ""};
+
+    Project projJeuLangue = {.sName = "Jeu traduction multi-langues",
+                             .language = {langCSharp, langMySQL, langSQLite},
+                             .languageArrayLength = 3,
+                             .year = 2026,
+                             .status = FINISHED,
+                             .sLienGitHub = ""};
+
+    Project projToucheCoule = {.sName = "Touché Coulé",
+                               .language = {langC, langRayLib},
+                               .languageArrayLength = 2,
+                               .year = 2026,
+                               .status = ACTIVE,
+                               .sLienGitHub = "https://github.com/Mezdoc18/bataille_navale"};
 
     Project allProjects [4] = {projPuis4, projCandy, projJeuLangue, projToucheCoule};
     // code
