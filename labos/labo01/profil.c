@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "profil.h"
+#include "compat.h"
 
 //*************************//
 //      Mise en forme
@@ -24,7 +25,7 @@ short int getUserChoice()
     unsigned short int userChoice;
 
     while((fgets(buffer, sizeof(buffer), stdin) == NULL) ||
-          (sscanf_s(buffer, "%u", &userChoice) != 1)     || 
+          (sscanf_s(buffer, "%hu", &userChoice) != 1)     || 
           (userChoice > 4))
     {
         fprintf(stderr, "Format attendu: 1 chiffre inférieur à 4");
@@ -72,7 +73,7 @@ void printProfile()
 {
     printStarsLine();
 
-    printBold("\n\t\t/// MON PROFIL \\\\\\ \n");
+    printBold("\n\n\t\t/// MON PROFIL \\\\\\ \n");
     puts("\t\t  Thibault CONTE");
     puts("\t\t Né le 18/12/1988\n");
 
@@ -94,12 +95,26 @@ void printTechSkills(Language temp[], unsigned short int arrayLength)
 {
     printStarsLine();
     putc('*', stdout);
-    printBold("\n\t\t/// COMPETENCES \\\\\\ \n");
+    printBold("\n\n\t\t/// COMPETENCES \\\\\\ \n");
 
     for (unsigned short int i = 0; i < arrayLength; i++)
-    printLanguage(&temp[i]);
+        printLanguage(&temp[i]);
 
-    printBold("\t\t\\\\\\             ///\n");
+    printBold("\t\t\\\\\\             ///\n");    
+    printStarsLine();
     putc('*', stdout);
+}
+
+void printProjectsList(Project temp[],unsigned short int arrayLength)
+{
+    printStarsLine();
+    printBold("\n\n\t\t/// PROJETS \\\\\\ \n");
+
+    for (unsigned short int i = 0; i < arrayLength; i++)
+    {
+        printProject(&temp[i]);
+        putc('\n',stdout);
+    }
+    printBold("\t\t\\\\\\             ///\n");
     printStarsLine();
 }

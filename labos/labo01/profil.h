@@ -18,7 +18,7 @@ void printBeginProg();
 void printMainMenu();
 void printProfile();
 void printTechSkills(Language temp[], unsigned short int arrayLength);
-printProjectsList(Project temp[],unsigned short int arrayLength );
+void printProjectsList(Project temp[],unsigned short int arrayLength);
 
 
 #endif

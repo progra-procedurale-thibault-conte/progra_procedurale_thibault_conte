@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+#ifdef _WIN32
+    #include <windows.h>
+#endif
 #include <stdbool.h>
 
 #include "profil.h"
@@ -8,8 +10,10 @@
 
 int main (void)
 {
+    #ifdef _WIN32
     // permet d'afficher les accents,... via encodage UTF8
-    SetConsoleOutputCP(CP_UTF8);
+        SetConsoleOutputCP(CP_UTF8);
+    #endif
 
     // declaration
     bool leaveProg;
@@ -70,7 +74,7 @@ int main (void)
                 printTechSkills(allKnownLang, 9);
                 break;
             case 3:
-                printProjectsList(allProjetcts, 4);
+                printProjectsList(allProjects, 4);
                 break;
             case 4:
                 // qqs statistiques

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "progra.h"
+#include "compat.h"
 
 void printLanguage(Language *temp)
 {
@@ -13,7 +14,7 @@ void printProject(Project *temp)
     for (unsigned short int i = 0; i < temp->languageArrayLength; i++)
     {
         printf_s("[%d] ", i+ 1);
-        printf_s(&temp->language[i].sName);
+        printf_s("%s", temp->language[i].sName);
     }
 
     printf_s("Année: %u\n", temp->year);
