@@ -29,7 +29,6 @@ unsigned short int getUserChoice()
           (userChoice > 4))
     {
         fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et 4");
-        continue;
     }
 
     return userChoice;
