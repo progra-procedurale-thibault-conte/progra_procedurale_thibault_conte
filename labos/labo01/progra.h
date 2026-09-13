@@ -18,7 +18,8 @@ typedef struct
 typedef struct
 {
     char sName[100];
-    Language language;
+    Language language[4];
+    unsigned short int languageArrayLength;
     unsigned short int year;
     PROJECT_STATUS status;  
 

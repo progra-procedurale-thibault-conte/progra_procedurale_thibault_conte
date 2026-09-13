@@ -37,14 +37,29 @@ short int getUserChoice()
 //*************************//
 //      Affichage
 //*************************//
+void printBeginStarsLine()
+{
+   printf_s("\t\t*****************************"); 
+}
+
+void printStarsLine()
+{
+    printf_s("\t\t******************");
+}
+
+void printBeginProg()
+{
+    putc('\n', stdout);
+    printBeginStarsLine();  
+    printf_s("\n\t\t");
+    printBold("Bienvenue sur mon profil DEV");
+    printBeginStarsLine();  
+}
 
 void printMainMenu()
 {
-    puts("\n\n");
-    printf_s("\t\tBienvenue sur le profil DEV de ");
-    printBold("Thibault Conte");
-
-    printUnderline("Afficher:");
+    puts("\n");
+    printUnderline("Afficher:\n");
     puts("[1] Le profil");
     puts("[2] Les compétences techniques / langages");
     puts("[3] Les projets");
@@ -55,7 +70,9 @@ void printMainMenu()
 
 void printProfile()
 {
-    printBold("\t\t/// MON PROFIL \\\\\\ \n");
+    printStarsLine();
+
+    printBold("\n\t\t/// MON PROFIL \\\\\\ \n");
     puts("\t\t  Thibault CONTE");
     puts("\t\t Né le 18/12/1988\n");
 
@@ -70,4 +87,19 @@ void printProfile()
     puts("https://github.com/Mezdoc18\n");
 
     printBold("\t\t\\\\\\            ///\n");
+    printStarsLine();
+}
+
+void printTechSkills(Language temp[], unsigned short int arrayLength)
+{
+    printStarsLine();
+    putc('*', stdout);
+    printBold("\n\t\t/// COMPETENCES \\\\\\ \n");
+
+    for (unsigned short int i = 0; i < arrayLength; i++)
+    printLanguage(&temp[i]);
+
+    printBold("\t\t\\\\\\             ///\n");
+    putc('*', stdout);
+    printStarsLine();
 }
