@@ -1,7 +1,8 @@
 #ifndef PROGRA_H
 #define PROGRA_H
 
-typedef enum : unsigned char
+// nouveaux types
+typedef enum //: unsigned char
 {
     ACTIVE = 0,
     FINISHED,
@@ -26,8 +27,16 @@ typedef struct
 
 }Project;
 
+// statistiques
 
+// niveau moyen de connaissance dans les technologies
+float averageLvl(Language temp[], unsigned short int arrayLength);
+float averageEndedProjects(Project temp[], unsigned short int arrayLength);
+Language bestMasteredLanguage (Language temp[], unsigned short int arrayLength);
+
+// Affichage
 void printLanguage(Language *temp);
 void printProject(Project *temp);
+
 
 #endif

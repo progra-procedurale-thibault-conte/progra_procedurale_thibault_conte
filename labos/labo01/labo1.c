@@ -7,11 +7,17 @@
 
 #include "profil.h"
 #include "progra.h"
+#include "compat.h"
 
 #define NBOFUSERCHOICES 5
 #define NBOFLANGUAGES 9
 #define NBOFPROJECTS 4
 #define MAXSKILLLEVEL 10
+
+
+// TODO 14/09 modifier strcpy en snprintf
+// verification / gestion d'erreurs
+// creer fonction printStat
 
 int main (void)
 {
@@ -35,7 +41,7 @@ int main (void)
     Language langCSS = {.sName = "CSS", .knowledgeLvl = 4};
     Language langRayLib = {.sName = "RayLib (Librairie C)", .knowledgeLvl = 0}; 
 
-    Language allKnownLang[9] = { langC, langCPP, langCSharp, langMySQL, langSQLite, langBash, langHTML, langCSS, langRayLib};
+    Language allKnownLang[NBOFLANGUAGES] = { langC, langCPP, langCSharp, langMySQL, langSQLite, langBash, langHTML, langCSS, langRayLib};
 
     // si ajout d'un projet => incrémenter la macro NBOFPROJECTS
     Project projPuis4 = {.sName = "Puissance 4",
@@ -66,7 +72,7 @@ int main (void)
                                .status = ACTIVE,
                                .sLienGitHub = "https://github.com/Mezdoc18/bataille_navale"};
 
-    Project allProjects [4] = {projPuis4, projCandy, projJeuLangue, projToucheCoule};
+    Project allProjects [NBOFPROJECTS] = {projPuis4, projCandy, projJeuLangue, projToucheCoule};
 
     // code
 
@@ -103,6 +109,12 @@ int main (void)
                 break;
              case 5:
                 // qqs statistiques
+                printf_s("Nombre de technologies connues: %d\n", NBOFLANGUAGES);
+                printf_s("Niveau moyen : %.2f/10\n", averageLvl(allKnownLang, NBOFLANGUAGES));
+                printf_s("Pourcentage de projets terminés: %.2f %% \n", 
+                    100 * averageEndedProjects(allProjects, NBOFPROJECTS));
+                Language Best = bestMasteredLanguage(allKnownLang, NBOFLANGUAGES);
+                printf_s("Technologie la mieux maitrisée: %s\n", Best.sName);
                 break;
 
             default:
