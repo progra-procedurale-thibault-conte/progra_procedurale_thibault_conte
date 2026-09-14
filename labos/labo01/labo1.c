@@ -109,12 +109,7 @@ int main (void)
                 break;
              case 5:
                 // qqs statistiques
-                printf_s("Nombre de technologies connues: %d\n", NBOFLANGUAGES);
-                printf_s("Niveau moyen : %.2f/10\n", averageLvl(allKnownLang, NBOFLANGUAGES));
-                printf_s("Pourcentage de projets terminés: %.2f %% \n", 
-                    100 * averageEndedProjects(allProjects, NBOFPROJECTS));
-                Language Best = bestMasteredLanguage(allKnownLang, NBOFLANGUAGES);
-                printf_s("Technologie la mieux maitrisée: %s\n", Best.sName);
+                printStat(allKnownLang, allProjects, NBOFLANGUAGES, NBOFPROJECTS);
                 break;
 
             default:

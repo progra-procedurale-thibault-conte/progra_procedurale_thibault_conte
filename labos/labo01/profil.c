@@ -139,3 +139,21 @@ void printProjectsList(Project temp[],unsigned short int arrayLength)
     printBold("\t\t\\\\\\             ///\n");
     printStarsLine();
 }
+
+void printStat(Language allLang[], Project allProj[], unsigned short int nbOfLang, unsigned short int nbOfProj)
+{
+    printStarsLine();
+    puts("****");
+    printBold("\n\t\t/// QUELQUES STATS \\\\\\ \n");
+
+    printf_s("\nNombre de technologies connues: %hu\n", nbOfLang);
+    printf_s("Niveau moyen : %.2f/10\n", averageLvl(allLang, nbOfLang));
+    printf_s("Pourcentage de projets terminés: %.2f %% \n", 
+        100 * averageEndedProjects(allProj, nbOfProj));
+    Language Best = bestMasteredLanguage(allLang, nbOfLang);
+    printf_s("Technologie la mieux maitrisée: %s\n\n", Best.sName);
+
+    printBold("\t\t\\\\\\                ///\n");    
+    printStarsLine();
+    puts("****");
+}
