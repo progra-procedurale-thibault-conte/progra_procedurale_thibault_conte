@@ -15,10 +15,6 @@
 #define MAXSKILLLEVEL 10
 
 
-// TODO 14/09 modifier strcpy en snprintf
-// verification / gestion d'erreurs
-// creer fonction printStat
-
 int main (void)
 {
     #ifdef _WIN32
@@ -114,7 +110,7 @@ int main (void)
 
             default:
                 fprintf(stderr, "Erreur après le choix du menu");
-                exit(EXIT_FAILURE);
+                break;
     
        }   
 

@@ -1,13 +1,21 @@
 #include <stdio.h>
+#include <string.h>
+
 #include "progra.h"
 #include "compat.h"
 #include "profil.h"
-#include "string.h"
+
 
 // fcts statistiques
 
 float averageLvl(Language temp[], unsigned short int arrayLength)
 {
+    if (temp == NULL || arrayLength == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans averageLvl\n");
+        return 0.0f;
+    }
+
     float averageLvl = 0.0f;
 
     for (unsigned short int i = 0; i < arrayLength; i++)
@@ -18,6 +26,12 @@ float averageLvl(Language temp[], unsigned short int arrayLength)
 
 float averageEndedProjects(Project temp[], unsigned short int arrayLength)
 {
+    if (temp == NULL || arrayLength == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans averageEndedProjects\n");
+        return 0.0f;
+    }
+
     float averageEndProj = 0.0f;
 
     for (unsigned short int i = 0; i < arrayLength; i++)
@@ -32,9 +46,9 @@ float averageEndedProjects(Project temp[], unsigned short int arrayLength)
 // contrairement à la struct project où un pointeur output serait plus efficient
 Language bestMasteredLanguage (Language temp[], unsigned short int arrayLength)
 {
-    if (arrayLength == 0)
+    if (temp == NULL || arrayLength == 0)
     {
-        fprintf(stderr, "Erreur taille tableau de 0\n");
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans bestMasteredLanguage\n");
         return (Language){0};
     }
 
@@ -58,13 +72,34 @@ Language bestMasteredLanguage (Language temp[], unsigned short int arrayLength)
 // Affichage
 void printLanguage(Language *temp)
 {
+    if (temp == NULL)
+    {
+        fprintf(stderr, "Erreur: pointeur NULL dans printLanguage\n");
+        return;
+    }
+
     printf_s("Langage : %s, niveau : %u/10\n\n", temp->sName,temp->knowledgeLvl);
 }
 
 void printProject(Project *temp)
 {
+    if (temp == NULL)
+    {
+        fprintf(stderr, "Erreur: pointeur NULL dans printProject\n");
+        return;
+    }
+
     char nameTemp[100];
-    strcpy(nameTemp, temp->sName);
+
+    //strcpy(nameTemp, temp->sName);
+    // snprintf plus secure que strcpy car pas de dépassement de mémoire, troncature auto si dépassement
+    // max taille sizeof - 1 
+    if ((snprintf(nameTemp, sizeof(nameTemp), "%s", temp->sName)) >= sizeof(nameTemp))
+    {
+        fprintf(stderr, "Erreur dans snprintf lors de la copie du nom du projet dans printProject");
+        return;
+    }
+    
 
     printUnderline(nameTemp);
     puts("Langage(s) utilisé(s):");

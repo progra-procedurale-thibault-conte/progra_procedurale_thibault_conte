@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "profil.h"
 #include "compat.h"
 
@@ -9,11 +10,23 @@
 //*************************//
 void printBold(char *text)
 {
+    if (text == NULL)
+    {
+        fprintf(stderr, "Erreur: pointeur NULL dans printBold\n");
+        return;
+    }
+
     printf_s("\033[1m%s\033[0m\n", text);
 }
 
 void printUnderline(char *text)
 {
+    if (text == NULL)
+    {
+        fprintf(stderr, "Erreur: pointeur NULL dans printUnderline\n");
+        return;
+    }
+
     printf_s("\033[4m%s\033[0m\n", text);
 }
 
@@ -30,9 +43,14 @@ unsigned short int getUserChoice(unsigned short int maxValue)
           (sscanf_s(buffer, "%hu", &userChoice) != 1)     || 
           (userChoice > maxValue))
     {
-        fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et %hu", maxValue);
+        // conseil sécurité IA vérifier si stdin fermé sinon boucle infinie
+        if (feof(stdin))
+        {
+            fprintf(stderr,"Fin de flux d'entrée\n");
+            exit(EXIT_FAILURE);
+        }
+        fprintf(stderr, "Format attendu: 1 chiffre compris entr 0 et %hu\n", maxValue);
     }
-
     return userChoice;
 }
 
@@ -96,6 +114,12 @@ void printProfile()
 
 void printTechSkills(Language temp[], unsigned short int arrayLength)
 {
+    if (temp == NULL || arrayLength == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans printTechSkills\n");
+        return;
+    }
+
     printStarsLine();
     putc('*', stdout);
     printBold("\n\n\t\t/// COMPETENCES \\\\\\ \n");
@@ -110,6 +134,12 @@ void printTechSkills(Language temp[], unsigned short int arrayLength)
 
 void printTechSkillsMinLvl(Language temp[], unsigned short int arrayLength, unsigned short int minSkillLvl)
 {
+    if (temp == NULL || arrayLength == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans printTechSkillsMinLvl\n");
+        return;
+    }
+
     printStarsLine();
     putc('*', stdout);
     printBold("\n\n\t\t/// COMPETENCES \\\\\\ \n");
@@ -128,6 +158,12 @@ void printTechSkillsMinLvl(Language temp[], unsigned short int arrayLength, unsi
 
 void printProjectsList(Project temp[],unsigned short int arrayLength)
 {
+    if (temp == NULL || arrayLength == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans printProjectsList\n");
+        return;
+    }
+
     printStarsLine();
     printBold("\n\n\t\t /// PROJETS \\\\\\ \n");
 
@@ -142,6 +178,12 @@ void printProjectsList(Project temp[],unsigned short int arrayLength)
 
 void printStat(Language allLang[], Project allProj[], unsigned short int nbOfLang, unsigned short int nbOfProj)
 {
+    if (allLang == NULL || allProj == NULL || nbOfLang == 0 || nbOfProj == 0)
+    {
+        fprintf(stderr, "Erreur: tableau NULL ou taille de 0 dans printStat\n");
+        return;
+    }
+
     printStarsLine();
     puts("****");
     printBold("\n\t\t/// QUELQUES STATS \\\\\\ \n");
